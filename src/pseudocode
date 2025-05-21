@@ -1,0 +1,12 @@
+setup
+- define seven ints for the seven pins on the board transmitting input to the PLC
+- define seven ints for the seven pins on the board receiving input from the PLC
+- start serial communication with the PC
+
+loop (assuming the python output format of the sample)
+- read the first four strings of data from serial to get the inputs, outputs, and timers strings
+  - parse the 'inputs' string for the bool value of each provided input
+    - set the input pins to high or low based on these values
+  - parse the 'outputs' string for the bool values of each provided output
+    - read the actual output from the PLC to the Arduino and compare them to the expected output string
+    

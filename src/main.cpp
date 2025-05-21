@@ -3,14 +3,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-//There are 54 digital pins on the Arduino Mega
+//There are 54 digital pins on the **Arduino Mega**
 //Each input must have an output, so there can be a maximum of 27 input and 27 output pins
 //Allocate pins 0-26 for input and 27-53 for output
+//*PINS THAT CAN'T BE USED: 
 const int MAX_INPUT_PIN = 26;
 const int MAX_OUTPUT_PIN = 53;
 
 void setup() {
-  
+  // pinMode(2, OUTPUT);
+  // pinMode(3, OUTPUT);
+  // pinMode(4, OUTPUT);
+  // pinMode(5, OUTPUT);
+  // pinMode(6, OUTPUT);
+  // pinMode(7, OUTPUT);
+  // pinMode(8, OUTPUT);
+  // pinMode(9, OUTPUT);  
   Serial.begin(9600);
   Serial.println("Starting...");
 }
@@ -43,8 +51,9 @@ void loop() {
 
     //Looping to get keys and value pairs (ex: IN0 : True)
     int pos = 0;
-    int current_input_pin = 0;
+    int current_input_pin = 2;
     while (current_input_pin <= MAX_INPUT_PIN) {
+      pinMode(current_input_pin, OUTPUT);
       int commaIdx = input_content.indexOf(',', pos);
       String pair;
       if (commaIdx == -1) {
@@ -69,7 +78,7 @@ void loop() {
       //Work with the current value
       //Set the input to the PLC ON if value is True
       if (value == "True"){
-        //digitalWrite(current_input_pin, HIGH);
+        digitalWrite(current_input_pin, LOW);
         Serial.print("PLC input turned ON: ");
         Serial.print(current_input_pin);
         Serial.print(" (");
@@ -78,7 +87,7 @@ void loop() {
       }
       //Set the input to the PLC OFF if value is False
       else{
-        //digitalWrite(current_input_pin, LOW);
+        digitalWrite(current_input_pin, HIGH);
         Serial.print("PLC input turned OFF: ");
         Serial.print(current_input_pin);
         Serial.print(" (");
@@ -105,9 +114,10 @@ void loop() {
 
 
     //Looping to get keys and value pairs (ex: IN0 : True)
-    int pos = 0;
-    int current_output_pin = 2;
+    pos = 0;
+    int current_output_pin = 22;
     while (current_output_pin <= MAX_OUTPUT_PIN) {
+      pinMode(current_output_pin, INPUT);
       int commaIdx = output_content.indexOf(',', pos);
       String pair;
       if (commaIdx == -1) {
@@ -135,7 +145,6 @@ void loop() {
       String actual_output = (digitalRead(current_output_pin) == 1) ? "ON" : "OFF";
       String expected_output = "True" ? "ON" : "OFF"; 
       if (actual_output == expected_output){
-        //digitalWrite(current_output_pin, HIGH);
         Serial.print("CORRECT OUTPUT: ");
         Serial.print(current_output_pin);
         Serial.print(" (");

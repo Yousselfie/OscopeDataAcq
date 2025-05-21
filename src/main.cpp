@@ -3,30 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+//There are 54 digital pins on the Arduino Mega
+//Each input must have an output, so there can be a maximum of 27 input and 27 output pins
+//Allocate pins 0-26 for input and 27-53 for output
+const int MAX_INPUT_PIN = 26;
+const int MAX_OUTPUT_PIN = 53;
 
 void setup() {
   
-  //PLC Inputs 0-7 --- digital pins 2-9
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(9, OUTPUT);
-
-  //PLC Outputs 0-7
-  pinMode(22, INPUT);
-  pinMode(24, INPUT);
-  pinMode(26, INPUT);
-  pinMode(28, INPUT);
-  pinMode(30, INPUT);
-  pinMode(32, INPUT);
-  pinMode(34, INPUT);
-  pinMode(36, INPUT);
-
   Serial.begin(9600);
   Serial.println("Starting...");
 }
@@ -46,6 +30,8 @@ void loop() {
     Serial.println(outputs);
     Serial.println(timers);
 
+    //------------------------------------Setting/Reading PLC Input------------------------------------//
+
     //------------------Extracting input values------------------//
     
     
@@ -57,8 +43,8 @@ void loop() {
 
     //Looping to get keys and value pairs (ex: IN0 : True)
     int pos = 0;
-    int current_input_pin = 2;
-    while (true) {
+    int current_input_pin = 0;
+    while (current_input_pin <= MAX_INPUT_PIN) {
       int commaIdx = input_content.indexOf(',', pos);
       String pair;
       if (commaIdx == -1) {
@@ -106,6 +92,73 @@ void loop() {
       
       if (commaIdx == -1) break;
     }
+
+    //------------------------------------Reading/Checking PLC Output------------------------------------//
+
+    //------------------Extracting output values------------------//
+
+
+    //Removing curly braces from input string
+    startIdx = outputs.indexOf('{');
+    endIdx = outputs.indexOf('}');
+    String output_content = outputs.substring(startIdx+1, endIdx);
+
+
+    //Looping to get keys and value pairs (ex: IN0 : True)
+    int pos = 0;
+    int current_output_pin = 2;
+    while (current_output_pin <= MAX_OUTPUT_PIN) {
+      int commaIdx = output_content.indexOf(',', pos);
+      String pair;
+      if (commaIdx == -1) {
+        pair = output_content.substring(pos); // last pair
+      } else {
+        pair = output_content.substring(pos, commaIdx);
+        pos = commaIdx + 1;
+      }
+
+      // Trim spaces
+      pair.trim();
+
+      //Extracting key and value
+      int quoteStart = pair.indexOf('\'') + 1;
+      int quoteEnd = pair.indexOf('\'', quoteStart);
+      String key = pair.substring(quoteStart, quoteEnd);
+
+      int colonIdx = pair.indexOf(':', quoteEnd);
+      String value = pair.substring(colonIdx + 1);
+      value.trim();
+      
+      //Work with the current value
+      //Check that the PLC output is consistent with the expected output (value)
+      //HIGH(1) == True, LOW(0) == False
+      String actual_output = (digitalRead(current_output_pin) == 1) ? "ON" : "OFF";
+      String expected_output = "True" ? "ON" : "OFF"; 
+      if (actual_output == expected_output){
+        //digitalWrite(current_output_pin, HIGH);
+        Serial.print("CORRECT OUTPUT: ");
+        Serial.print(current_output_pin);
+        Serial.print(" (");
+        Serial.print(key);
+        Serial.println(")");
+      }
+      else{
+        
+        Serial.print("WRONG OUTPUT: Pin ");
+        Serial.print(current_output_pin);
+        Serial.print(" (");
+        Serial.print(key);
+        Serial.print(") should be ");
+        Serial.println(expected_output);
+      }
+
+      //Move to next pin
+      current_output_pin = current_output_pin + 1;
+
+      
+      if (commaIdx == -1) break;
+    }
+
 
     //Print a new line
     Serial.println();

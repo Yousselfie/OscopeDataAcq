@@ -8,7 +8,7 @@ serialInstance.port = "COM4"
 serialInstance.open()
 time.sleep(2)
 
-
+# All on
 serialInstance.write(("1\n").encode('utf-8'))
 serialInstance.write(("--- Symbolic Execution Path ---\n").encode('utf-8'))
 serialInstance.write("Inputs: {'IN0': True, 'IN1': True, 'IN2': True, 'IN3': True, 'IN4': True, 'IN5': True, 'IN6': True, 'IN7': True}\n".encode('utf-8'))
@@ -21,6 +21,7 @@ print("Arduino:")
 while serialInstance.in_waiting > 0:
     print("\t", serialInstance.readline().decode('utf-8').strip())
 
+# Odds on, evens off
 serialInstance.write(("2\n").encode('utf-8'))
 serialInstance.write(("--- Symbolic Execution Path ---\n").encode('utf-8'))
 serialInstance.write("Inputs: {'IN0': False, 'IN1': True, 'IN2': False, 'IN3': True, 'IN4': False, 'IN5': True, 'IN6': False, 'IN7': True}\n".encode('utf-8'))
@@ -33,6 +34,7 @@ print("Arduino:")
 while serialInstance.in_waiting > 0:
     print("\t", serialInstance.readline().decode('utf-8').strip())
 
+# All off
 serialInstance.write(("3\n").encode('utf-8'))
 serialInstance.write(("--- Symbolic Execution Path ---\n").encode('utf-8'))
 serialInstance.write("Inputs: {'IN0': False, 'IN1': False, 'IN2': False, 'IN3': False, 'IN4': False, 'IN5': False, 'IN6': False, 'IN7': False}\n".encode('utf-8'))

@@ -10,15 +10,7 @@
 const int MAX_INPUT_PIN = 26;
 const int MAX_OUTPUT_PIN = 53;
 
-void setup() {
-  // pinMode(2, OUTPUT);
-  // pinMode(3, OUTPUT);
-  // pinMode(4, OUTPUT);
-  // pinMode(5, OUTPUT);
-  // pinMode(6, OUTPUT);
-  // pinMode(7, OUTPUT);
-  // pinMode(8, OUTPUT);
-  // pinMode(9, OUTPUT);  
+void setup() { 
   Serial.begin(9600);
   Serial.println("Starting...");
 }
@@ -53,7 +45,11 @@ void loop() {
     int pos = 0;
     int current_input_pin = 2;
     while (current_input_pin <= MAX_INPUT_PIN) {
+
+      //Set pin to output signal from Arduino to PLC
       pinMode(current_input_pin, OUTPUT);
+      
+      //Getting the key, value pair
       int commaIdx = input_content.indexOf(',', pos);
       String pair;
       if (commaIdx == -1) {
@@ -117,7 +113,11 @@ void loop() {
     pos = 0;
     int current_output_pin = 22;
     while (current_output_pin <= MAX_OUTPUT_PIN) {
+
+      //Set pin to input signal from PLC to Arduino
       pinMode(current_output_pin, INPUT);
+
+      //Getting the key, value pair
       int commaIdx = output_content.indexOf(',', pos);
       String pair;
       if (commaIdx == -1) {
@@ -152,7 +152,7 @@ void loop() {
         Serial.println(")");
       }
       else{
-        
+          
         Serial.print("WRONG OUTPUT: Pin ");
         Serial.print(current_output_pin);
         Serial.print(" (");

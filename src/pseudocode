@@ -1,12 +1,16 @@
+global variables
+- there are 52 digital pins available to use as GPIO on the Arduino Mega, as we are avoiding using pins 0 and 1 since communication is happening over "Serial0" (or just "Serial")
+-- this means there are 26 for input/output each
+--- allocate pins 2-27 for input and 28-53 for ouput
+
+
 setup
-- define seven ints for the seven pins on the board transmitting input to the PLC
-- define seven ints for the seven pins on the board receiving input from the PLC
 - start serial communication with the PC
 
 loop (assuming the python output format of the sample)
-- read the first four strings of data from serial to get the inputs, outputs, and timers strings
+- read the first five strings of data from serial to get the path num, header, inputs, outputs, and timers strings
   - parse the 'inputs' string for the bool value of each provided input
-    - set the input pins to high or low based on these values
+    - set the PLC input pins (output pins relative to Arduino) to high (OFF, since normally closed relay) or low (ON) based on these values
   - parse the 'outputs' string for the bool values of each provided output
     - read the actual output from the PLC to the Arduino and compare them to the expected output string
     

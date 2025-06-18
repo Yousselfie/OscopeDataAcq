@@ -11,7 +11,7 @@ x, y = [], []
 x1, y2 = [], []
 
 # Read first CSV
-with open('four_seconds(5000).csv', 'r') as csvfile:
+with open('no-inputs(5000).csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
         if i > 13:
@@ -22,7 +22,7 @@ with open('four_seconds(5000).csv', 'r') as csvfile:
                 continue
 
 # Read second CSV
-with open('outer_inner(5000).csv', 'r') as csvfile:
+with open('input_onetwothree.csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
         if i > 13:
@@ -91,7 +91,7 @@ plt.figure(figsize=(16, 12))
 # Time Series - four_seconds (denoised)
 plt.subplot(3, 2, 1)
 plt.plot(x, y_denoised, color='b')
-plt.title('Time Series (Denoised) - four_seconds')
+plt.title('Time Series (Denoised) - no inputs')
 plt.xlabel('Time (s)')
 plt.ylabel('Voltage')
 plt.grid(True)
@@ -99,7 +99,7 @@ plt.grid(True)
 # Time Series - outer_inner (denoised)
 plt.subplot(3, 2, 2)
 plt.plot(x1, y2_denoised, color='r')
-plt.title('Time Series (Denoised) - outer_inner')
+plt.title('Time Series (Denoised) - inputs one, two, and three')
 plt.xlabel('Time (s)')
 plt.ylabel('Voltage')
 plt.grid(True)
@@ -107,7 +107,7 @@ plt.grid(True)
 # FFT - four_seconds
 plt.subplot(3, 2, 3)
 plt.plot(freq[:N//2], np.abs(Y1)[:N//2], color='b')
-plt.title('FFT - four_seconds (Denoised)')
+plt.title('FFT - no inputs (Denoised)')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('|FFT|')
 plt.grid(True)
@@ -125,7 +125,7 @@ plt.annotate(f'Peak: {peak1_freq:.1f} Hz', xy=(peak1_freq, peak1_val),
 # FFT - outer_inner
 plt.subplot(3, 2, 4)
 plt.plot(freq[:N//2], np.abs(Y2)[:N//2], color='r')
-plt.title('FFT - outer_inner (Denoised)')
+plt.title('FFT - inputs one, two, and three (Denoised)')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('|FFT|')
 plt.grid(True)

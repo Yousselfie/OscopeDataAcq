@@ -11,7 +11,7 @@ x, y = [], []
 x1, y2 = [], []
 
 # Read first CSV
-with open('no-inputs(5000).csv', 'r') as csvfile:
+with open('input_one.csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
         if i > 13:
@@ -22,7 +22,7 @@ with open('no-inputs(5000).csv', 'r') as csvfile:
                 continue
 
 # Read second CSV
-with open('input_onetwothree.csv', 'r') as csvfile:
+with open('input_two.csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
         if i > 13:

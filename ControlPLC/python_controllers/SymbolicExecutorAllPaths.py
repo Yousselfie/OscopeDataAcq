@@ -158,7 +158,7 @@ if __name__ == "__main__":
     #----------------------- Establishing Serial Connection to Arduino -----------------
     serialInstance = serial.Serial()
     serialInstance.baudrate = 9600
-    serialInstance.port = "COM4"
+    serialInstance.port = "COM3"
     serialInstance.open()
     time.sleep(2)
 

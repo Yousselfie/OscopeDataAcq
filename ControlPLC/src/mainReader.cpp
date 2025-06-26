@@ -87,7 +87,7 @@ void loopReader() {
       current_input_pin = current_input_pin + 1;
 
       
-      if (commaIdx == -1) break;
+      
     }
 
     //------------------------------------Reading/Checking PLC Output------------------------------------//
@@ -166,3 +166,8 @@ void loopReader() {
 
   }
 }
+
+
+// use the 30/10 rule
+// after 30 minutes of screentime
+// take a 10 year vacation

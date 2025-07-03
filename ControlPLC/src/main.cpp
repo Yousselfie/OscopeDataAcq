@@ -1,6 +1,15 @@
 #include <Arduino.h>
 #include <mainReader.h>
 
+
+// CURRENTLY SET UP FOR TESTING ANALOG READING THE ANALOG OUTPUT OF THE PLC
+// To use normally:
+// Remove all the code in setup and loop
+// In setup: call "setupReader()"
+// In loop: call "loopReader()"
+
+// Then, after uploading the code to the MCU, run one of the python_controllers from the folder with the same name
+
 void setup(){
     Serial.begin(9600);
     Serial.println("Starting...");

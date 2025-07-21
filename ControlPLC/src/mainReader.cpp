@@ -1,5 +1,8 @@
 #include <Arduino.h>
 #include <mainReader.h>
+#include <time.h>
+
+unsigned long start_time;
 
 struct KeyValuePair{
     int pos; // Since the position needs to be updated between iterations of the key-value pair extraction loop
@@ -11,6 +14,8 @@ struct KeyValuePair{
 void setupReader() { 
   Serial.begin(9600);
   Serial.println("Starting...");
+  start_time = millis();
+
 
   // Set pin mode of arduino's analog input pins
   for (int i=0; i<num_outputs; i++){
@@ -70,6 +75,9 @@ void loopReader(){
             // set the PLC input (Arduino output)
             // The below function will also print the updates to the inputs in the serial monitor as they are made. 
             setPLCInput(current_input_pin, key, value);
+
+            //Serial print the time since start after input change
+            Serial.println(millis() - start_time);
 
         }
 
@@ -200,7 +208,7 @@ KeyValuePair getKeyValuePair(String content, int pos){
 
 void printVoltage(){
     Serial.print("Voltage: ");
-    Serial.println(analogRead(A0)*5/1023);
+    Serial.println(analogRead(A0)*5.0/1023);
 }
 
 

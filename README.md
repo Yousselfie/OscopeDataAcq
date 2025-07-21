@@ -8,5 +8,8 @@ In order to capture the EM data of a specific control logic, it must be running 
 **./ControlPLC/src** - Contains the source code and pseudocode for the main cpp file uploaded into the microcontroller. This code defines how the Arduino communicates with and interprets data from the local machine (Python controller).  
 **./ControlPLC/python_controllers** - Contains multiple different Python programs that each establish communication with the Arduino, send data to be parsed, and ultimately determine PLC I/O from the Arduino. Each of these has been used for a different testing purpose (such as turning on all the PLC inputs or running through all symbolic paths of a sample program and turning on/off inputs based on each path).  
 
-**./SignalProcessing** - 
+**./SignalProcessing** - Contains scripts for cleaning and comparing captured signals in CSV format. Most important is the script that compares two signals using dynamic time warping and the script that compares two signals after wavelet denoising them.
+
+
+
 

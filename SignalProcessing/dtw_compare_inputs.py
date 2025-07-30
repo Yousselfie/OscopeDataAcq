@@ -12,26 +12,24 @@ x1, y1 = [], []
 x2, y2 = [], []
 
 # Read first CSV
-with open('csvs/input_one.csv', 'r') as csvfile:
+with open('csvs/TrafficLight - Sheet1 (on).csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
-        if i > 13:
-            try:
-                x1.append(float(row[0]))
-                y1.append(float(row[1]))
-            except ValueError:
-                continue
+        try:
+            x1.append(float(row[0]))
+            y1.append(float(row[1]))
+        except ValueError:
+            continue
 
 # Read second CSV
-with open('csvs/input_two.csv', 'r') as csvfile:
+with open('csvs/TrafficLight - Sheet2 (off).csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
-        if i > 13:
-            try:
-                x2.append(float(row[0]))
-                y2.append(float(row[1]))
-            except ValueError:
-                continue
+        try:
+            x2.append(float(row[0]))
+            y2.append(float(row[1]))
+        except ValueError:
+            continue
 
 # Convert to numpy arrays
 y1_np = np.array(y1)

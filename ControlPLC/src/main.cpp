@@ -2,10 +2,10 @@
 #include <readAnalog.h>
 
 void setup(){
-    setupReadAnalog();
+    setupReader();
 }
 
 void loop(){
-    loopReadAnalog();
+    loopReader();
 }
 

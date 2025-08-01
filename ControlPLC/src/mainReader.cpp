@@ -100,6 +100,8 @@ void loopReader(){
 
             bool expectedOutput = output_key_value_pair.value == "True"; // Converting the string value to a boolean
             bool actualOutput = getPLCOutput(outputs[i]); // True or False for ON/OFF of output
+            Serial.print(analogRead(outputs[i]));
+            Serial.print(" ||| ");
 
             //--------------------Reading PLC Outputs and Printing Their Values--------------------//
             if (actualOutput){
@@ -109,6 +111,11 @@ void loopReader(){
                 Serial.print(i);
                 Serial.print(")");
                 Serial.print(" ON");
+                Serial.print(" at ");
+                //Serial print the time since start after output change
+                Serial.print(millis() - start_time);
+                Serial.print("ms");
+
             }
             else{
                 Serial.print(outputs[i]);
@@ -117,6 +124,11 @@ void loopReader(){
                 Serial.print(i);
                 Serial.print(")");
                 Serial.print(" OFF");
+                Serial.print(" at ");
+                //Serial print the time since start after output change
+                Serial.print(millis() - start_time);
+                Serial.print("ms");
+                
             }
             //--------------------Printing If They Are as Expected--------------------//
             if (checkPLCOutput(actualOutput, expectedOutput)){
@@ -210,5 +222,4 @@ void printVoltage(){
     Serial.print("Voltage: ");
     Serial.println(analogRead(A0)*5.0/1023);
 }
-
 

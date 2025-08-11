@@ -11,7 +11,7 @@ import cython
 x1, y1 = [], []
 
 # Read first CSV
-with open('csvs/TrafficLight.csv', 'r') as csvfile:
+with open('csvs/splg0016.csv', 'r') as csvfile:
     lines = csv.reader(csvfile, delimiter=',')
     for i, row in enumerate(lines):
         if i >13:
@@ -43,7 +43,7 @@ y1_denoised = wavelet_denoise(y1_np)
 
 
 #Offset; row 15185 is where the time is 3034 ms which is when Q3 starts; Q3 is the first output to turnon in this capture
-offset = 15185
+offset = 17715
 offset = offset - 13 #minus 13 because we skipped 13 rows at the beginning when reading the csv
 
 
@@ -55,9 +55,9 @@ plt.figure(figsize=(12, 8))
 # Wavelet Denoised Time Series Plot
 ax1 = plt.subplot2grid((2, 2), (0, 0))
 ax1.plot(x1, y1_denoised, label='Input 0', color='blue')
-plt.axvline(x = 3.034, color = 'r', label = 'Q3')
-plt.axvline(x = 6.039, color = 'g', label = 'Q1')
-plt.axvline(x = 11.040, color = 'y', label = 'Q2')
+plt.axvline(x = 3.54, color = 'r', label = 'Q3')
+plt.axvline(x = 6.239, color = 'g', label = 'Q1')
+plt.axvline(x = 11.240, color = 'y', label = 'Q2')
 plt.axvline(x = 13.007, color = 'orange', label = 'Blink')
 ax1.set_title('Time Series')
 ax1.legend()

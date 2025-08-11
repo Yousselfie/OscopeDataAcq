@@ -9,7 +9,7 @@ struct KeyValuePair;
 
 const int MAX_INPUT_PIN = 10; //starting at pin 2, this makes 9 input pins
 
-const uint8_t outputs[] = {A0, A1, A2, A3};
+const uint8_t outputs[] = {A1, A2, A3, A4};
 const int num_outputs = 4;
 
 void setupReader();

@@ -1,11 +1,11 @@
 #include <mainReader.h>
-#include <readAnalog.h>
+#include <traffic.h>
 
 void setup(){
-    setupReader();
+    setupTraffic();
 }
 
 void loop(){
-    loopReader();
+    loopTraffic();
 }
 

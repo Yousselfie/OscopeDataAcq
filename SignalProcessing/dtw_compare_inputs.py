@@ -52,7 +52,7 @@ y1_denoised = wavelet_denoise(y1_np)
 y2_denoised = wavelet_denoise(y2_np)
 
 # Optional: downsample for speed
-factor = 1
+factor = 70
 y1_d = y1_denoised[::factor]
 y2_d = y2_denoised[::factor]
 
@@ -61,7 +61,7 @@ distance = dtw.distance(y1_d, y2_d)
 
 
 # Calculate DTW distance and obtain the warping paths (no need for the C library)
-distance, paths = dtw.warping_paths(y1_d, y2_d, use_c=False)
+distance, paths = dtw.warping_paths(y1_d, y2_d, use_c=True)
 best_path = dtw.best_path(paths)
 
 # Estimate similarity score by normalizing with length

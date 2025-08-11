@@ -154,7 +154,7 @@ if __name__ == "__main__":
     }
 
     enriched_paths = integrate_em_traces(paths, em_trace)
-
+    visualize_io_tree(enriched_paths)
     #----------------------- Establishing Serial Connection to Arduino -----------------
     serialInstance = serial.Serial()
     serialInstance.baudrate = 9600
@@ -164,7 +164,7 @@ if __name__ == "__main__":
 
         
 
-    # visualize_io_tree(enriched_paths)
+    
     # write_to_json(enriched_paths, "symbolic_io_paths.json")
     # write_to_csv(enriched_paths, "symbolic_io_paths.csv")
 

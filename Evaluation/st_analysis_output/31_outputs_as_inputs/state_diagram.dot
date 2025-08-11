@@ -1,0 +1,9 @@
+digraph StateDiagram {
+  "Q0_1" -> "Q0_0_Out";
+  "Q0_2" -> "Q0_0_Out";
+  "Q0_3" -> "Q0_0_Out";
+  "Q0_4" -> "Q0_0_Out";
+  "Q0_5" -> "Q0_0_Out";
+  "Q0_6" -> "Q0_0_Out";
+  "Q0_7" -> "Q0_0_Out";
+}

@@ -1,0 +1,5 @@
+digraph StateDiagram {
+  "I0_0" -> "Q0_1";
+  "I0_0" -> "Q0_0";
+  "I0_0" -> "TM0";
+}

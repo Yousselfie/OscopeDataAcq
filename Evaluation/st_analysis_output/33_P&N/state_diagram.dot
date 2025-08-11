@@ -1,0 +1,4 @@
+digraph StateDiagram {
+  "SB_COLDSTART" -> "Q0_3";
+  "SB_WARMSTART" -> "Q0_8";
+}

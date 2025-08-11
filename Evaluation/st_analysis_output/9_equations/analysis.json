@@ -1,0 +1,18 @@
+{
+  "LOC": 11,
+  "Inputs": 2,
+  "Outputs": 0,
+  "Timers": 0,
+  "Branches": 4,
+  "Edges": [
+    [
+      "I0_0",
+      "MW1"
+    ],
+    [
+      "I0_0",
+      "MW1"
+    ]
+  ],
+  "Paths": []
+}

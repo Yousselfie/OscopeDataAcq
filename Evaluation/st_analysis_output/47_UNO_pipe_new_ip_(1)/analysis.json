@@ -1,0 +1,28 @@
+{
+  "LOC": 48,
+  "Inputs": 6,
+  "Outputs": 3,
+  "Timers": 1,
+  "Branches": 9,
+  "Edges": [
+    [
+      "SYSTEM_RUN",
+      "M2"
+    ],
+    [
+      "SYSTEM_RUN",
+      "TMT0"
+    ],
+    [
+      "TMT0",
+      "Q0_0"
+    ]
+  ],
+  "Paths": [
+    [
+      "SYSTEM_RUN",
+      "TMT0",
+      "Q0_0"
+    ]
+  ]
+}

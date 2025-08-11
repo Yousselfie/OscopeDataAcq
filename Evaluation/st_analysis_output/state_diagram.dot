@@ -1,0 +1,4 @@
+digraph ST_State_Diagram {
+rankdir=LR;
+node [shape=box, fontname=Helvetica];
+}

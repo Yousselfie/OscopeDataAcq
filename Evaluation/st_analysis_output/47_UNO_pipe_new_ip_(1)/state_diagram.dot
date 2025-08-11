@@ -1,0 +1,5 @@
+digraph StateDiagram {
+  "SYSTEM_RUN" -> "M2";
+  "SYSTEM_RUN" -> "TMT0";
+  "TMT0" -> "Q0_0";
+}

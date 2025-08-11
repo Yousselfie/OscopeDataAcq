@@ -1,0 +1,18 @@
+{
+  "LOC": 23,
+  "Inputs": 3,
+  "Outputs": 1,
+  "Timers": 0,
+  "Branches": 5,
+  "Edges": [
+    [
+      "SB_COLDSTART",
+      "Q0_3"
+    ],
+    [
+      "SB_WARMSTART",
+      "Q0_8"
+    ]
+  ],
+  "Paths": []
+}

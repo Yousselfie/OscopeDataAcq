@@ -8,7 +8,7 @@ unsigned long start;
 void setupTraffic(){
     Serial.begin(9600);
     Serial.println("Starting...");
-    start = millis();
+    
 
     // Define mode of output pins
     pinMode(A4, INPUT);
@@ -21,6 +21,16 @@ void setupTraffic(){
 }
 
 void loopTraffic(){
+
+    //--------------Untested Input-to-Start system---------------//
+
+    // Serial.println("Press any key to start");
+
+    // while(Serial.available() == 0){
+    //     //Nothing
+    // }
+    start = millis(); // Time starts after key press
+
     
     //Turn on
     digitalWrite(2, LOW);

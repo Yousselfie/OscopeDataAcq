@@ -24,11 +24,11 @@ void loopTraffic(){
 
     //--------------Untested Input-to-Start system---------------//
 
-    // Serial.println("Press any key to start");
+    Serial.println("Press any key to start");
 
-    // while(Serial.available() == 0){
-    //     //Nothing
-    // }
+    while(Serial.available() == 0){
+        //Nothing
+    }
     start = millis(); // Time starts after key press
 
     
